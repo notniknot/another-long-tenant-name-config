@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: preview-params
+  labels:
+    preview.sonia.so/contract: params
+data:
+  previewID: local
+  hostname: another-long-tenant-name-web-local.sonia-certs.uk
+  applicationName: another-long-tenant-name-preview-local
+  imageAllowTags: regexp:^preview-local-.*
+  appName: another-long-tenant-name-web-local
+  generatedMessage: local-message

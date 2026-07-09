@@ -1,0 +1,34 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: web
+  namespace: another-long-tenant-name
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/compare-options: ServerSideDiff=true
+spec:
+  project: another-long-tenant-name
+  sources:
+    - repoURL: https://github.com/notniknot/another-long-tenant-name-config.git
+      targetRevision: main
+      path: apps/web/playground
+      kustomize: {}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: another-long-tenant-name
+  syncPolicy:
+    syncOptions:
+      - RespectIgnoreDifferences=true
+      - ServerSideApply=true
+      - ApplyOutOfSyncOnly=true
+    automated:
+      prune: true
+      selfHeal: true
+    retry:
+      refresh: true
+      limit: -1
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m

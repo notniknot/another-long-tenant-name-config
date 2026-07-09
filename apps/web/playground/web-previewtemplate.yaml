@@ -1,0 +1,41 @@
+# PreviewTemplate for the playground web app.
+# Located by controller config preview.templateFile; not a spec field.
+apiVersion: preview.sonia.so/v1alpha1
+kind: PreviewTemplate
+metadata:
+  name: web
+spec:
+  enabled: true
+  configRepository: notniknot/another-long-tenant-name-config
+  path: apps/web
+  application:
+    name: web
+    path: web-playground.argocd.yaml
+
+  values:
+    hostname:
+      default: another-long-tenant-name-web-{{.PreviewID}}.sonia-certs.uk
+      visible: true
+    imageTagPrefix:
+      default: preview-{{.PreviewID}}-
+      editable: true
+      description: Image tag prefix that ImageUpdater follows.
+    appName:
+      default: another-long-tenant-name-web-{{.PreviewID}}
+      editable: true
+      description: Value rendered into APP_NAME.
+    message:
+      default: message-{{.PreviewID}}
+      editable: true
+      description: Value rendered into GENERATED_SECRET_MESSAGE.
+
+  preview:
+    source:
+      # Swap the playground source to this preview overlay.
+      overlayPath: previews/playground
+    # Values written into preview-params.data.
+    params:
+      hostname: "{{.Values.hostname}}"
+      imageAllowTags: "regexp:^{{.Values.imageTagPrefix}}.*"
+      appName: "{{.Values.appName}}"
+      generatedMessage: "{{.Values.message}}"
