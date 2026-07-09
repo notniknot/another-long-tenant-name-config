@@ -31,7 +31,7 @@ patches:
   - target:
       group: argocd-image-updater.argoproj.io
       kind: ImageUpdater
-      name: web
+      name: another-long-tenant-name-web
     patch: |-
       - op: replace
         path: /spec/applicationRefs/0/images/0/imageName

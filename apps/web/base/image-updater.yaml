@@ -1,7 +1,7 @@
 apiVersion: argocd-image-updater.argoproj.io/v1alpha1
 kind: ImageUpdater
 metadata:
-  name: web
+  name: another-long-tenant-name-web
   namespace: argocd
   labels:
     app.kubernetes.io/name: web
