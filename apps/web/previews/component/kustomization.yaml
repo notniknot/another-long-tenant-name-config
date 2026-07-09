@@ -11,6 +11,9 @@ patches:
       name: another-long-tenant-name-web
     patch: |-
       - op: replace
+        path: /metadata/namespace
+        value: argocd
+      - op: replace
         path: /spec/writeBackConfig
         value:
           method: argocd

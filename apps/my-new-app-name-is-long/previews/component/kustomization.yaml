@@ -11,6 +11,9 @@ patches:
       name: my-new-app-name-is-long
     patch: |-
       - op: replace
+        path: /metadata/namespace
+        value: argocd
+      - op: replace
         path: /spec/writeBackConfig
         value:
           method: argocd

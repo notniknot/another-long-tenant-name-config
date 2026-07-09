@@ -2,7 +2,7 @@ apiVersion: argocd-image-updater.argoproj.io/v1alpha1
 kind: ImageUpdater
 metadata:
   name: my-new-app-name-is-long
-  namespace: argocd
+  namespace: another-long-tenant-name
   labels:
     app.kubernetes.io/name: my-new-app-name-is-long
     app.kubernetes.io/part-of: another-long-tenant-name
