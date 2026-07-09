@@ -1,0 +1,26 @@
+apiVersion: argocd-image-updater.argoproj.io/v1alpha1
+kind: ImageUpdater
+metadata:
+  name: my-new-app-name-is-long
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: my-new-app-name-is-long
+    app.kubernetes.io/part-of: another-long-tenant-name
+spec:
+  writeBackConfig:
+    method: argocd
+  applicationRefs:
+    - namePattern: my-new-app-name-is-long
+      images:
+        - alias: web
+          imageName: ghcr.io/notniknot/web-apps:main
+          manifestTargets:
+            kustomize:
+              name: ghcr.io/notniknot/web-apps
+          commonUpdateSettings:
+            updateStrategy: digest
+            forceUpdate: true
+            allowTags: regexp:^main$
+            pullSecret: pullsecret:argocd/ghcr-pull-secret
+            platforms:
+              - linux/amd64

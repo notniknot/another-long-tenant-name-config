@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-new-app-name-is-long
+  labels:
+    app.kubernetes.io/name: my-new-app-name-is-long
+spec:
+  selector:
+    app.kubernetes.io/name: my-new-app-name-is-long
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
