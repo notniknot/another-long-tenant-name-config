@@ -16,6 +16,10 @@ spec:
     hostname:
       default: my-new-app-name-is-long-{{.PreviewID}}.sonia-certs.uk
       visible: true
+      editable: true
+      validation:
+        pattern: "^[a-z0-9](?:[a-z0-9-]{1,13}[a-z0-9])\\.sonia-certs\\.uk$"
+        message: Use a 3-15 character lowercase hostname label followed by .sonia-certs.uk (letters, digits, and internal hyphens).
     imageTagPrefix:
       default: preview-{{.PreviewID}}-
       editable: true
